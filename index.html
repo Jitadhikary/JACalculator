@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <!-- fontawesome Font -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <style type="text/css">
+    	/* {
+    	padding: 0;
+    	margin: 0;
+    	box-sizing: border-box;
+    	font-family: "Roboto Mono", monospace;
+    	}
+    	body {
+    	height: 100vh;
+    	background: linear-gradient(to bottom, #f9544c 50%, #090c31 50%);
+    	
+    	}
+    	.calculator {
+    	width: 400px;
+    	background-color: #15173c;
+    	padding: 50px 30px;
+    	position: absolute;
+    	transform: translate(-50%, -50%);
+    	top: 50%;
+    	left: 50%;
+    	border-radius: 8px;
+    	box-shadow: 0 20px 50px rgba(0, 5, 24, 0.4);
+    	}
+    	.display {
+    	width: 100%;
+    	}
+    	.display input {
+    	width: 100%;
+    	padding: 15px 10px;
+    	text-align: right;
+    	border: none;
+    	background-color: transparent;
+    	color: #ffffff;
+    	font-size: 35px;
+    	}
+    	.display input::placeholder {
+    	color: #9490ac;
+    	}
+    	.buttons {
+    	display: grid;
+    	grid-template-columns: repeat(4, 1fr);
+    	grid-gap: 20px;
+    	margin-top: 40px;
+    	}
+    	.buttons input[type="button"] {
+    	font-size: 20px;
+    	padding: 17px;
+    	border: none;
+    	background-color: transparent;
+    	color: #ffffff;
+    	cursor: pointer;
+    	border-radius: 5px;
+    	}
+    	.buttons input[type="button"]:hover {
+    	box-shadow: 0 8px 25px #000d2e;
+    	}
+    	input[type="button"]#equal {
+    	grid-row: span 2;
+    	background-color: #f9544c;
+    	}
+    	input[type="button"][value="0"] {
+    	grid-column: span 2;
+    	}*/
+    	:root {
+        --buttonsAoniconBgC: white;
+        --white: #ffffff;
+      }
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Sans-Serif;
+        -webkit-user-select:none;
+        -webkit-user-drag: none;
+      }
+      body{
+        margin: 0;
+        padding: 0;
+        position: fixed;
+      }
+      /*dark-mode-styling*/
+      .dark-mode-switch{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        outline: none;
+        width: 40px;
+        height: 20px;
+        background-color: #26cc00;
+        border-radius: 20px;
+        z-index: 3;
+        transition: 0.3s;
+      }
+      .dark-mode-switch::before{
+        content:"";
+        width: 15px;
+        height: 15px;
+        border-radius: 100%;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 2.5px;
+        transform: translate(0,-50%);
+        transition: 0.3s;
+      }
+      .dark-mode-switch:checked{
+        background-color: #26cc00;
+      }
+      .dark-mode-switch:checked::before{
+        left: 22px;
+        background-color: black;
+      }
+      .dark-mode-switch:checked ~ .calculator > .display{
+        background-color: black;
+      }
+      .dark-mode-switch:checked ~ .calculator > .display #input{
+        color: white;
+      }
+      .dark-mode-switch:checked ~ .calculator > .buttons{
+        background-color: #252525;
+      }
+      .dark-mode-switch:checked ~ .calculator > .buttons > button > .digit{
+        color: white;
+      }
+      .dark-mode-switch:checked ~ .calculator > .buttons > button > .button-text > #online-icon{
+        background-color: #252525;
+      }
+      .dark-mode-switch:checked ~ .calculator > .buttons > button:hover > .button-text{
+        background-color: #353535;
+      }
+      .dark-mode-switch:checked ~ .calculator > .buttons > button:hover > .button-text > #online-icon{
+        background-color: #353535;
+      }
+      .dark-mode-switch:checked ~ .calculator > .display #input + div{
+        background-color: #676767;
+      }
+      
+      
+      
+      
+      
+      
+     
+      .calculator{
+        width: 100%;
+        height: 100vh;
+        background-color: ;
+      }
+      .calculator > .display{
+        width: 100%;
+        /*height: 330px;*/height: 45%;
+        background-color: #FDFDFD;
+        padding-bottom: 6px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+      .calculator > .display > #input{
+        width: 100%;
+        /*height: 250px;*/height: 76%;
+        margin-bottom: 6px;
+        padding-left: 6px;
+        padding-right: 18px;
+        text-align: right;
+        font-size: 60px;
+        border: none;
+        outline: none;
+        color: black;
+        background-color: transparent;
+        text-overflow: hidden;
+        
+      }
+      
+      
+      
+      .calculator > .buttons{
+        width: 100%;
+        height: 55%;
+        padding-bottom: 10px;
+        background-color:var(--buttonsAoniconBgC);
+        /*border-top: 1px solid rgba(0,0,0,0.01);*/
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: 20% 20% 20% 20% 20%;
+      }
+      .calculator > .buttons > #equal{
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 6;
+      }
+      .calculator > .buttons > button{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .calculator > .buttons >{
+        
+      }
+      .calculator > .buttons > button > .button-text{
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 100%;
+        color: black;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      .calculator > .buttons > button:hover > .button-text{
+        background-color: rgba(0,0,0,0.03);
+      }
+      .calculator > .buttons > button > .button-text > #online-icon{
+        z-index: 2;
+        background-color: var(--buttonsAoniconBgC);
+      }
+      .calculator > .buttons > button:hover > .button-text > #online-icon{
+        background-color: #F7F7F7;
+      }
+      .calculator > .buttons > button > .color-button{
+        color: #26CC00;
+        font-size: 25px;
+        position: relative;
+      }
+      .calculator > .buttons > button > .color-button > .ofline-icon{
+        position: absolute;
+        z-index: 1;
+      }
+      .calculator > .buttons > #equal > .button-text{
+        height: 17vh;
+		  	width: 3.6rem;
+		  	border-radius: 0.7rem;
+		  	background-color: #26CC00;
+		  	color: white;
+		  	font-size: 25px;
+      }
+      .calculator > .buttons > #equal:hover > .button-text{
+        background-color: ;
+      }
+      #equal{
+        background-color: ;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="checkbox" class="dark-mode-switch" checked=""/>
+    <div class="calculator">
+      <div class="display">
+        <input type="text" placeholder="" id="input" maxlength="10" disabled />
+        <div style="position:absolute;bottom:5px;left:50%;transform:translate(-50%);margin:0 auto;width:32px;height:3px;background-color:#C5C5C5;border-radius:2px"></div>
+      </div>
+      <div class="buttons">
+        <!--Start First Row-->
+        <!-- Full Erase -->
+        <button type="button" value="C" id="clear" >
+          <div class="button-text color-button">
+            C
+          </div>
+        </button>
+        <button type="button" value="/" class="input-button" >
+          <div class="button-text color-button">
+            <i class="fa-regular fa-divide" id="online-icon"></i>
+            <span class="ofline-icon" style="font-size:30px;">÷</span>
+          </div>
+        </button>
+        <button type="button" value="*" class="input-button" >
+          <div class="button-text color-button">
+            <i class="fa-regular fa-xmark" id="online-icon"></i>
+            <span class="ofline-icon" style="font-size:30px;">×</span>
+          </div>
+        </button>
+        <!-- Erase Single Value -->
+        <button type="button" value="×" id="erase" >
+          <div class="button-text color-button">
+            <i class="fa-regular fa-delete-left" id="online-icon"></i>
+            <span class="ofline-icon">⌫</span>
+         </div>
+        </button>
+        <!--End Fisrt Row-->
+        
+        <!--Start Second Row-->
+        <button type="button" value="7" class="input-button" >
+          <div class="button-text digit">
+            7
+          </div>
+        </button>
+        <button type="button" value="8" class="input-button" >
+          <div class="button-text digit">
+            8
+          </div>
+        </button>
+        <button type="button" value="9" class="input-button" >
+          <div class="button-text digit">
+            9
+          </div>
+        </button>
+        <button type="button" value="-" class="input-button" >
+          <div class="button-text color-button">
+            <i class="fa-regular fa-minus" id="online-icon"></i>
+            <span class="ofline-icon" style="font-size:30px;">-</span>
+          </div>
+        </button>
+        <!--End Second Row-->
+        
+        <!--Start Third Row-->
+        <button type="button" value="4" class="input-button" >
+          <div class="button-text digit">
+            4
+          </div>
+        </button>
+        <button type="button" value="5" class="input-button" >
+          <div class="button-text digit">
+            5
+          </div>
+        </button>
+        <button type="button" value="6" class="input-button" >
+          <div class="button-text digit">
+            6
+          </div>
+        </button>
+        <button type="button" value="+" class="input-button" >
+          <div class="button-text color-button">
+            <i class="fa-regular fa-plus" id="online-icon"></i>
+            <span class="ofline-icon" style="font-size:30px;">+</span>
+          </div>
+        </button>
+        <!--End Third Row-->
+        
+        <!--Start Fourth Row-->
+        <button type="button" value="1" class="input-button">
+          <div class="button-text digit">
+              1
+            </div>
+        </button>
+        <button type="button" value="2" class="input-button" >
+          <div class="button-text digit">
+              2
+            </div>
+        </button>
+        <button type="button" value="3" class="input-button" >
+          <div class="button-text digit">
+              3
+            </div>
+        </button>
+        <button type="button" value="=" id="equal" >
+          <div class="button-text color-button">
+              <i class="fa-regular fa-equals" style="z-index:2;background-color:#26CC00;"></i>
+              <span class="ofline-icon" style="font-size:30px;">=</span>
+            </div>
+        </button>
+        <!--End Fourth Row-->
+        
+        <!--Start Last Row-->
+        <button type="button" value="%" class="input-button" >
+          <div class="button-text digit">
+              %
+            </div>
+        </button>
+        <button type="button" value="0" class="input-button" >
+          <div class="button-text digit">
+              0
+            </div>
+        </button>
+        <button type="button" value="." class="input-button" >
+          <div class="button-text digit">
+              .
+            </div>
+        </button>
+        <!--End Last Row-->
+      </div>
+    </div>
+    
+    <!-- Script -->
+    <script>
+    	let equal_pressed = 0;
+    	//Refer all buttons excluding AC and DEL
+    	let button_input = document.querySelectorAll(".input-button");
+    	//Refer input,equal,clear and erase
+    	let input = document.getElementById("input");
+    	let equal = document.getElementById("equal");
+    	let clear = document.getElementById("clear");
+    	let erase = document.getElementById("erase");
+    	
+    	window.onload = () => {
+    	input.value = "";
+    	};
+    	
+    	//Access each class using forEach
+    	button_input.forEach((button_class) => {
+    	button_class.addEventListener("click", () => {
+    	if (equal_pressed == 1) {
+    	input.value = "";
+    	equal_pressed = 0;
+    	}
+    	//display value of each button
+    	input.value += button_class.value;
+    	});
+    	});
+    	
+    	//Solve the user's input when clicked on equal sign
+    	equal.addEventListener("click", () => {
+    	equal_pressed = 1;
+    	let inp_val = input.value;
+    	try {
+    	//evaluate user's input
+    	let solution = eval(inp_val);
+    	//True for natural numbers
+    	//false for decimals
+    	if (Number.isInteger(solution)) {
+    	input.value = solution;
+    	} else {
+    	input.value = solution.toFixed(2);
+    	}
+    	} catch (err) {
+    	//If user has entered invalid input
+    	/*alert("Invalid Input");*/
+    	}
+    	});
+    	
+    	//Clear Whole Input
+    	clear.addEventListener("click", () => {
+    	input.value = "";
+    	});
+    	//Erase Single Digit
+    	erase.addEventListener("click", () => {
+    	input.value = input.value.substr(0, input.value.length - 1);
+    	});
+    
+    
+    </script>
+  </body>
+</html>
